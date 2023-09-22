@@ -1,0 +1,20 @@
+stages:
+  - lint
+  - setup
+  - apply
+#  - forward
+
+lint-helmfile:
+  stage: lint
+  script:
+    - helmfile lint .
+
+setup-k3d-cluster:
+  stage: setup
+  script:
+    - k3d cluster create --config k3d_cluster_config.yaml
+
+apply-helmfile:
+  stage: apply
+  script:
+    - helmfile apply

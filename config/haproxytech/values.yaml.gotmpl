@@ -1,0 +1,16 @@
+ingress:
+  enabeld: true
+  className: haproxy
+  annotations:
+    haproxy.org/path-rewrite: "/"
+  hosts:
+    - host: localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-grafana-deployment
+                port:
+                  number: 3000

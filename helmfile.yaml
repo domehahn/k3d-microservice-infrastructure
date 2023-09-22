@@ -1,0 +1,114 @@
+---
+repositories:
+  - name: stable
+    url: https://charts.helm.sh/stable
+  - name: hashicorp
+    url: https://helm.releases.hashicorp.com
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+  - name: jaegertracing
+    url: https://jaegertracing.github.io/helm-charts
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: haproxytech
+    url: https://haproxytech.github.io/helm-charts
+  - name: kubernetes-dashboard
+    url: https://kubernetes.github.io/dashboard/
+
+
+releases:
+  #- name: dashboard
+  #  namespace: dashboard
+  #  chart: kubernetes-dashboard/kubernetes-dashboard
+  #  version: 7.0.0-alpha1
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+
+  #- name: vault
+  #  namespace: vault
+  #  chart: hashicorp/vault
+  #  version: 0.25.0
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: consul
+  #  namespace: consul
+  #  chart: hashicorp/consul
+  #  version: 1.2.1
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: prometheus
+  #  namespace: prometheus
+  #  chart: prometheus-community/prometheus
+  #  version: 24.5.0
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: jaeger
+  #  namespace: jaeger
+  #  chart: jaegertracing/jaeger
+  #  version: 0.71.14
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  - name: grafana
+    namespace: grafana
+    chart: grafana/grafana
+    version: 6.59.4
+    values:
+      - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: redis
+  #  namespace: redis
+  #  chart: bitnami/redis
+  #  version: 18.0.4
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: mongo
+  #  namespace: mongo
+  #  chart: bitnami/mongodb
+  #  version: 13.18.4
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: rabbitmq
+  #  namespace: rabbitmq
+  #  chart: bitnami/rabbitmq
+  #  version: 12.1.4
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+
+  #- name: keycloak
+  #  namespace: keycloak
+  #  chart: bitnami/keycloak
+  #  version: 16.1.5
+  #  values:
+  #    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      #- config/{{`{{ .Release.Name }}`}}/{{`{{ .Environment.Name }}`}}.yaml.gotmpl
+  
+  - name: haproxytech
+    namespace: default
+    chart: haproxytech/kubernetes-ingress
+    version: 1.33.0
+    values:
+      - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+
+environments: 
+  playground:
+    values:
+    - environments/common/values.yaml
+    - environments/playground/values.yaml
+    secrets:
+    - environments/playground/secret.yaml
